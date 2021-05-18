@@ -3,7 +3,7 @@
         <p>
             <input type="checkbox" v-on:change="markComplete">
             {{todo.title}}
-            <button @click="$emit('del-todo', todo.id)" class="del">c</button>
+            <button @click="$emit('del-todo', todo.id)" class="del">clear</button>
         </p>
     </div>
 </template>
@@ -22,12 +22,13 @@
 
 <style scoped>
     .todo-item{
-        background: #f4f4f4;
+        background-color:thistle;
         padding: 10px;
         border-bottom: 1px, #ccc, dotted;
     }
     .is-complete{
         text-decoration: line-through;
+    
     }
     .del{
         background: #ff0000;
