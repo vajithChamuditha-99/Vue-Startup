@@ -31,14 +31,23 @@ export default {
   },
   methods:{
     deleteTodo(id){
-      this.todos= this.todos.filter(todo=> todo.id !== id);
-
+      axios.delete(`http://jsonplaceholder.typicode.com/todos/${id}` )
+      
+      this.todos= this.todos.filter(todo=> todo.id !== id)
+      .catch(err => console.log(err))
     },
     addTodo(newTodo){
+      const { title, completed} = newTodo;
       if (newTodo.title=="") {
-        alert
+        return;
       }
-      this.todos = [...this.todos, newTodo]
+      axios.post('http://jsonplaceholder.typicode.com/todos', {
+        title,
+        completed
+      } )
+      .then(res=> this.todos = [...this.todos, res.data])
+      .catch(err => console.log(err));
+      
     }
   },
   created(){
